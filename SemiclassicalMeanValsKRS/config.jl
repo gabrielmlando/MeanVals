@@ -11,13 +11,13 @@ end
 
 struct Detector
 
-    Σ   ::SMatrix{2, 2, Float64}     # variance matrix of detector (for now, considered as a multiple of identity -- i.e., circular detector)
+    σ   ::Float64     # variance matrix of detector (for now, considered as a multiple of identity -- i.e., circular detector)
     X0  ::SVector{2, Float64}        # center of detector
     R   ::Float64                    # radius of detector to be considered in calculations (for 3 standard deviations, pick σ = 3 × 1/Σ[1,1])
 end
 
 # the detector is defined by this "Wigner" function. We assume Σ = something * I
-W(X, X0, Σ) = (det(Σ)/π) * exp( -norm(Σ*(X - X0))^2 )
+W(X, X0, σ) = inv(2*π*σ^2) * exp( -inv(2σ^2)*norm(X - X0)^2 )
 
 # norm on S¹
 d(θ) = min( mod2pi(θ), 2π - mod2pi(θ) )          

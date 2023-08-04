@@ -1,5 +1,5 @@
 # computes oscillatory part of SMV mean values
-function get_means_osc(α, kick, m0, X0, Σ, Nθ, θ_fils, fils, ħs)
+function get_means_osc(α, kick, m0, X0, σ, Nθ, θ_fils, fils, ħs)
     
     N = length(fils)
 
@@ -37,7 +37,7 @@ function get_means_osc(α, kick, m0, X0, Σ, Nθ, θ_fils, fils, ħs)
    
                 for (r,ħ) in enumerate(ħs)
                     
-                    ∫dη[r] += W(η, X0, Σ) * cos(Δs/ħ + 0.5π*(μ2 - μ1) ) * (sqrt∘abs)(dθ1*dθ2)
+                    ∫dη[r] += W(η, X0, σ) * cos(Δs/ħ + 0.5π*(μ2 - μ1) ) * (sqrt∘abs)(dθ1*dθ2)
                 end
                 
                 ###################################################

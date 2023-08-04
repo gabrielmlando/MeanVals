@@ -8,8 +8,6 @@ which amounts to a delta function in action representation. Propagation is perfo
 `` \\vert \\psi_k \\rangle = \\left[ \\exp \\left( i \\, \\alpha \\, \\widehat{m}^2/2\\hbar \\right) \\exp \\left( i \\, \\alpha \\, \\widehat{\\sin \\theta}/\\hbar \\right) \\right] \\vert \\psi_{k-1} \\rangle \\quad , ``
 
 using Fourier grids. 
-
-For latest update, see https://github.com/gabrielmlando/MeanVals
 """
 module QuantumKRS
 
@@ -29,17 +27,17 @@ end
 
 struct Detector
 
-    Σ  ::SMatrix{2, 2, Float64}                  # detector's standard deviation
+    σ  ::Float64                                 # detector's standard deviation
     X0 ::SVector{2, Float64}                     # location of detector
     R  ::Float64                                 # how many detector standard deviations to be included in calculations -- effective radius                             
 end
 
-# ⟨θ1|D_12|θ2⟩
-D12(θ1, θ2, ħ, Σ, X0) = 0.5 * inv(π^1.5 * ħ) * Σ[1,1] * exp( -inv(4Σ[1,1]^2) * ( 
-                                                                        ( 4.0*X0[1]^2 + (θ2+θ1-2X0[2])^2 )*Σ[1,1]^4 + (θ1-θ2+2.0im*X0[1]*Σ[1,1]^2*ħ)^2/ħ^2   
-                                                                               )
-                                                           ) 
-
+D12(θ1, θ2, ħ, σ, X0) = inv((2π)^1.5 * ħ * σ) * exp( 
+                                                    - inv(2σ^2) * ( (θ2+θ1)/2 - X0[2] )^2 +
+                                                    - (0.5σ^2/ħ^2) * (θ2-θ1)^2            +
+                                                    + (1.0im/ħ) * X0[1] * (θ2-θ1) 
+                                                   )
+                                                                        
 # self-explanatory (A)
 function get_grids(N, ħ)
 
@@ -59,6 +57,7 @@ function get_truncation_inds(dθ, X0, R)
     
     n1, n2
 end
+
 
 # wavefunction at final time. Many values of ħ can be passed at once
 function wave_at_k(par::Params)
@@ -104,7 +103,7 @@ end
 function mean_vals_at_k(par::Params, mps::Detector)
 
     @unpack α, kick, N, M0, ħs = par
-    @unpack Σ, X0, R           = mps
+    @unpack σ, X0, R           = mps
         
     dθ = 2π/N
     
@@ -116,7 +115,7 @@ function mean_vals_at_k(par::Params, mps::Detector)
     
     for (j,ħ) in enumerate(ħs)
 
-        d12 = [D12(a, b, ħ, Σ, X0) for a in θs[j][n1:n2], b in θs[j][n1:n2]]              # truncated detector's matrix
+        d12 = [D12(a, b, ħ, σ, X0) for a in θs[j][n1:n2], b in θs[j][n1:n2]]              # truncated detector's matrix
     
         D  = sum( (transpose∘conj)(ψs_θ[j][n1:n2]) * d12 * ψs_θ[j][n1:n2] ) * dθ^2        
         

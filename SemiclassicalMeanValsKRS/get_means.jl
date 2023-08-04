@@ -2,7 +2,7 @@
 function get_means_smv(par::Params, dec::Detector)
     
     @unpack α, kick, M0, Lₘₐₓ, Nθ, ħ, warnings = par
-    @unpack R, Σ, X0                           = dec
+    @unpack σ, R, X0                           = dec
     
     θ0s, Lk                    = get_Lk(α, kick, M0, Lₘₐₓ, X0, R, warnings)                  # obtain sections of Lk falling inside the detector
     θ_fins, fins, θ_fils, fils = filament_or_finger(θ0s, Lk)                                 # check which are filaments and which are fingers                    
@@ -11,8 +11,8 @@ function get_means_smv(par::Params, dec::Detector)
                                   
     θ_fils, fils               = sort_from_up_to_down(θ_fils, fils)  
     
-    classical_result           = get_means_cla(α, kick, M0, X0, Σ, Nθ, θ0s, Lk)              # get constant term <O>_cl
-    semiclassical_result       = get_means_osc(α, kick, M0, X0, Σ, Nθ, θ_fils, fils, ħ)      # get oscillatory term <O>_sc
+    classical_result           = get_means_cla(α, kick, M0, X0, σ, Nθ, θ0s, Lk)              # get constant term <O>_cl
+    semiclassical_result       = get_means_osc(α, kick, M0, X0, σ, Nθ, θ_fils, fils, ħ)      # get oscillatory term <O>_sc
 
     if warnings
         println("Number of filaments inside the detector: ", length(θ_fils))

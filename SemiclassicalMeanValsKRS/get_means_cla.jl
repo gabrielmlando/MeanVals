@@ -1,5 +1,5 @@
 # calculate constant (classical) contribution to smv means using the truncated Wigner approximation
-function get_means_cla(α, kick, M0, X0, Σ, Nθ, θ0s, Lk)
+function get_means_cla(α, kick, M0, X0, σ, Nθ, θ0s, Lk)
 
     N = length(θ0s)
     
@@ -15,7 +15,7 @@ function get_means_cla(α, kick, M0, X0, Σ, Nθ, θ0s, Lk)
             
             xₖ′ = flow!(α, kick, SVector{2}(M0, θₖ))
         
-            ∫dη += W(xₖ′, X0, Σ)*dθ 
+            ∫dη += W(xₖ′, X0, σ)*dθ 
         
             θₖ += dθ
         end
