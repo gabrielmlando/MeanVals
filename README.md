@@ -8,13 +8,13 @@ This module computes quantum evolution and mean values for the kicked rotor syst
 
 ## `SemiclassicalMeanValueKRS` module
 
-### `get\_Lk` function
+### `get_Lk` function
 
 This function performs exactly what is described in Subsec.~IIIA of the Supplemental Material
 
 ### `sorters.jl` file
 
-The main formula in `get\_means\_osc` assumes that all filaments are indexed according to the same rule. Thus, after the filaments are obtained by `get\_Lk`, we choose the following ordering: All filaments are ordered from left to right, from top to bottom. That is, the first element of every filament will always be its leftmost intersection with the detector, and the first filament will always be above the others in the angular momentum axis. This is in line with Fig.~S1.
+The main formula in `get_means_osc` assumes that all filaments are indexed according to the same rule. Thus, after the filaments are obtained by `get_Lk`, we choose the following ordering: All filaments are ordered from left to right, from top to bottom. That is, the first element of every filament will always be its leftmost intersection with the detector, and the first filament will always be above the others in the angular momentum axis. This is in line with Fig.~S1.
 
 ## `HermanKlukKRS` module
 
