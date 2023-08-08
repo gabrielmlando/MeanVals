@@ -41,7 +41,7 @@ end
 # coherent state on the circle in action representation
 g(y, m, θ, γ, ħ) = (π*γ*ħ)^(-1/4) * exp( -inv(2.0γ*ħ)*(y-m)^2 - (1.0im/ħ)*y*θ )
 
-# unnormalized MCMC estimator -- the posterior is the real part of coherent state above, i.e. exp( -inv(2.0σ)*(y-m)^2 ), σ = γ*ħ
+# unnormalized MCMC estimator -- the pdf is the real part of coherent state above, i.e. exp( -inv(2.0σ)*(y-m)^2 ), σ = γ*ħ
 w(m, θ, γ, ħ) = exp( (1.0im/ħ) * m * θ)
 
 # self-explanatory (A)
