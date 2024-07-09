@@ -1,6 +1,23 @@
 # MeanVals
 
-This code is a companion to the paper "Computing mean values in the deep chaotic regime", soon to appear in published form. 
+This code is a companion to the paper [Computing Mean Values in the Deep Chaotic Regime, Phys. Rev. Lett. 132 (2024), 260401, by Gabriel M. Lando, Olivier Giraud and Denis Ullmo]. Please cite the original paper as
+
+\begin{quote}
+@article{PhysRevLett.132.260401,
+  title = {Computing Quantum Mean Values in the Deep Chaotic Regime},
+  author = {Lando, Gabriel M. and Giraud, Olivier and Ullmo, Denis},
+  journal = {Phys. Rev. Lett.},
+  volume = {132},
+  issue = {26},
+  pages = {260401},
+  numpages = {6},
+  year = {2024},
+  month = {Jun},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.132.260401},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.132.260401}
+}
+\end{quote}
 
 ## `QuantumKRS` module
 
