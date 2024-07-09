@@ -121,12 +121,14 @@ function wave_at_k(par::Params)
         
         mₖ, θₖ, sₖ, rₖ, μₖ = flow!(par, m₀, θ₀)
         
+	dK =  μₖ * sqrt(rₖ)   *                     # pre-factor  
+              w(M0, θ₀, γ, ħ) *                     # MCMC estimator
+              exp(1.0im*sₖ/ħ)                       # exponential of classical action  
+
         for j=1:N
             
-            ψ_m[j] += μₖ * sqrt(rₖ) *                       # pre-factor  
-                      w(M0, θ₀, γ, ħ) *                     # MCMC estimator
-                      g(m[j], mₖ, θₖ, γ, ħ) *               # dynamic coherent state in angle representation
-                      exp(1.0im*sₖ/ħ)                       # exponential of classical action      
+            ψ_m[j] += dK * g(m[j], mₖ, θₖ, γ, ħ)    # dynamic coherent state in angle representation
+                          
         end    
     end
     
