@@ -4,7 +4,7 @@ This code is a companion to the paper
 
 Gabriel M. Lando, Olivier Giraud and Denis Ullmo, *Computing Mean Values in the Deep Chaotic Regime*, Phys. Rev. Lett. 132 (2024), 260401
 
-The published paper is available at the publisher's [website](https://doi.org/10.1103/PhysRevLett.132.260401) and also on [ArXiv](https://arxiv.org/abs/2308.04655). If you use this code, please cite the publisher's version:
+The published paper is available at the publisher's [website](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.132.260401) and also on [ArXiv](https://arxiv.org/abs/2308.04655). If you use this code, please cite the publisher's version:
 
 ```md
 @article{PhysRevLett.132.260401,
